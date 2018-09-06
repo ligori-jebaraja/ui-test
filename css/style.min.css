@@ -34623,9 +34623,9 @@
             }
             
             .stat-box .py-3 {
-                padding-top: 18px;
-                padding-bottom: 18px;
-                min-height: 80px;
+                padding-top: 22px;
+                padding-bottom: 22px;
+                min-height: 88px;
             }
             
             .stat-box .border-right {
@@ -34639,11 +34639,16 @@
             .left-iconbox {
                 color: #fff;
                 margin-bottom: 30px;
+                font-size: 16px;
             }
             
             .left-iconbox i {
                 font-size: 30px;
-                line-height: 70px;
+                line-height: 75px;
+            }
+            
+            .left-iconbox .p-3 {
+                padding: 15px;
             }
             
             .left-iconbox strong {
@@ -34660,4 +34665,24 @@
             
             .left-iconbox.green {
                 background: #13cf71;
+            }
+            
+            .card {
+                background: #fff;
+                border-top: 3px solid #1bc098;
+                -webkit-border-radius: 4px !important;
+                -moz-border-radius: 4px !important;
+                border-radius: 4px !important;
+                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+                font-size: 13px;
+            }
+            
+            .card .card-header {
+                padding: 15px;
+                border-bottom: 1px solid #d0cdc6
+            }
+            
+            .card .card-body p {
+                margin: 10px 0;
             }
