@@ -11,14 +11,6 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var assetsPath = '../assets/';
-
-    var globalImgPath = 'global/img/';
-
-    var globalPluginsPath = 'global/plugins/';
-
-    var globalCssPath = 'global/css/';
-
     // theme layout color set
 
     var brandColors = {
@@ -90,316 +82,12 @@ var App = function() {
             });
         }
     };
-
-    // Handles portlet tools & actions
-    var handlePortletTools = function() {
-        // handle portlet remove
-        $('body').on('click', '.portlet > .portlet-title > .tools > a.remove', function(e) {
-            e.preventDefault();
-            var portlet = $(this).closest(".portlet");
-
-            if ($('body').hasClass('page-portlet-fullscreen')) {
-                $('body').removeClass('page-portlet-fullscreen');
-            }
-
-            portlet.find('.portlet-title .fullscreen').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .reload').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .remove').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .config').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .collapse, .portlet > .portlet-title > .tools > .expand').tooltip('destroy');
-
-            portlet.remove();
-        });
-
-        // handle portlet fullscreen
-        $('body').on('click', '.portlet > .portlet-title .fullscreen', function(e) {
-            e.preventDefault();
-            var portlet = $(this).closest(".portlet");
-            if (portlet.hasClass('portlet-fullscreen')) {
-                $(this).removeClass('on');
-                portlet.removeClass('portlet-fullscreen');
-                $('body').removeClass('page-portlet-fullscreen');
-                portlet.children('.portlet-body').css('height', 'auto');
-            } else {
-                var height = App.getViewPort().height -
-                    portlet.children('.portlet-title').outerHeight() -
-                    parseInt(portlet.children('.portlet-body').css('padding-top')) -
-                    parseInt(portlet.children('.portlet-body').css('padding-bottom'));
-
-                $(this).addClass('on');
-                portlet.addClass('portlet-fullscreen');
-                $('body').addClass('page-portlet-fullscreen');
-                portlet.children('.portlet-body').css('height', height);
-            }
-        });
-
-        $('body').on('click', '.portlet > .portlet-title > .tools > a.reload', function(e) {
-            e.preventDefault();
-            var el = $(this).closest(".portlet").children(".portlet-body");
-            var url = $(this).attr("data-url");
-            var error = $(this).attr("data-error-display");
-            if (url) {
-                App.blockUI({
-                    target: el,
-                    animate: true,
-                    overlayColor: 'none'
-                });
-                $.ajax({
-                    type: "GET",
-                    cache: false,
-                    url: url,
-                    dataType: "html",
-                    success: function(res) {
-                        App.unblockUI(el);
-                        el.html(res);
-                        App.initAjax() // reinitialize elements & plugins for newly loaded content
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        App.unblockUI(el);
-                        var msg = 'Error on reloading the content. Please check your connection and try again.';
-                        if (error == "toastr" && toastr) {
-                            toastr.error(msg);
-                        } else if (error == "notific8" && $.notific8) {
-                            $.notific8('zindex', 11500);
-                            $.notific8(msg, {
-                                theme: 'ruby',
-                                life: 3000
-                            });
-                        } else {
-                            alert(msg);
-                        }
-                    }
-                });
-            } else {
-                // for demo purpose
-                App.blockUI({
-                    target: el,
-                    animate: true,
-                    overlayColor: 'none'
-                });
-                window.setTimeout(function() {
-                    App.unblockUI(el);
-                }, 1000);
-            }
-        });
-
-        // load ajax data on page init
-        $('.portlet .portlet-title a.reload[data-load="true"]').click();
-
-        $('body').on('click', '.portlet > .portlet-title > .tools > .collapse, .portlet .portlet-title > .tools > .expand', function(e) {
-            e.preventDefault();
-            var el = $(this).closest(".portlet").children(".portlet-body");
-            if ($(this).hasClass("collapse")) {
-                $(this).removeClass("collapse").addClass("expand");
-                el.slideUp(200);
-            } else {
-                $(this).removeClass("expand").addClass("collapse");
-                el.slideDown(200);
-            }
-        });
-    };
     
-    // Handlesmaterial design checkboxes
-    var handleMaterialDesign = function() {
 
-        // Material design ckeckbox and radio effects
-        $('body').on('click', '.md-checkbox > label, .md-radio > label', function() {
-            var the = $(this);
-            // find the first span which is our circle/bubble
-            var el = $(this).children('span:first-child');
-              
-            // add the bubble class (we do this so it doesnt show on page load)
-            el.addClass('inc');
-              
-            // clone it
-            var newone = el.clone(true);  
-              
-            // add the cloned version before our original
-            el.before(newone);  
-              
-            // remove the original so that it is ready to run on next click
-            $("." + el.attr("class") + ":last", the).remove();
-        }); 
-
-        if ($('body').hasClass('page-md')) { 
-            // Material design click effect
-            // credit where credit's due; http://thecodeplayer.com/walkthrough/ripple-click-effect-google-material-design       
-            var element, circle, d, x, y;
-            $('body').on('click', 'a.btn, button.btn, input.btn, label.btn', function(e) { 
-                element = $(this);
-      
-                if(element.find(".md-click-circle").length == 0) {
-                    element.prepend("<span class='md-click-circle'></span>");
-                }
-                    
-                circle = element.find(".md-click-circle");
-                circle.removeClass("md-click-animate");
-                
-                if(!circle.height() && !circle.width()) {
-                    d = Math.max(element.outerWidth(), element.outerHeight());
-                    circle.css({height: d, width: d});
-                }
-                
-                x = e.pageX - element.offset().left - circle.width()/2;
-                y = e.pageY - element.offset().top - circle.height()/2;
-                
-                circle.css({top: y+'px', left: x+'px'}).addClass("md-click-animate");
-
-                setTimeout(function() {
-                    circle.remove();      
-                }, 1000);
-            });
-        }
-
-        // Floating labels
-        var handleInput = function(el) {
-            if (el.val() != "") {
-                el.addClass('edited');
-            } else {
-                el.removeClass('edited');
-            }
-        } 
-
-        $('body').on('keydown', '.form-md-floating-label .form-control', function(e) { 
-            handleInput($(this));
-        });
-        $('body').on('blur', '.form-md-floating-label .form-control', function(e) { 
-            handleInput($(this));
-        });        
-
-        $('.form-md-floating-label .form-control').each(function(){
-            if ($(this).val().length > 0) {
-                $(this).addClass('edited');
-            }
-        });
-    }
-
-    // Handles custom checkboxes & radios using jQuery iCheck plugin
-    var handleiCheck = function() {
-        if (!$().iCheck) {
-            return;
-        }
-
-        $('.icheck').each(function() {
-            var checkboxClass = $(this).attr('data-checkbox') ? $(this).attr('data-checkbox') : 'icheckbox_minimal-grey';
-            var radioClass = $(this).attr('data-radio') ? $(this).attr('data-radio') : 'iradio_minimal-grey';
-
-            if (checkboxClass.indexOf('_line') > -1 || radioClass.indexOf('_line') > -1) {
-                $(this).iCheck({
-                    checkboxClass: checkboxClass,
-                    radioClass: radioClass,
-                    insert: '<div class="icheck_line-icon"></div>' + $(this).attr("data-label")
-                });
-            } else {
-                $(this).iCheck({
-                    checkboxClass: checkboxClass,
-                    radioClass: radioClass
-                });
-            }
-        });
-    };
-
-    // Handles Bootstrap switches
-    var handleBootstrapSwitch = function() {
-        if (!$().bootstrapSwitch) {
-            return;
-        }
-        $('.make-switch').bootstrapSwitch();
-    };
-
-    // Handles Bootstrap confirmations
-    var handleBootstrapConfirmation = function() {
-        if (!$().confirmation) {
-            return;
-        }
-        $('[data-toggle=confirmation]').confirmation({ btnOkClass: 'btn btn-sm btn-success', btnCancelClass: 'btn btn-sm btn-danger'});
-    }
-    
     // Handles Bootstrap Accordions.
     var handleAccordions = function() {
         $('body').on('shown.bs.collapse', '.accordion.scrollable', function(e) {
             App.scrollTo($(e.target));
-        });
-    };
-
-    // Handles Bootstrap Tabs.
-    var handleTabs = function() {
-        //activate tab if tab id provided in the URL
-        if (encodeURI(location.hash)) {
-            var tabid = encodeURI(location.hash.substr(1));
-            $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function() {
-                var tabid = $(this).attr("id");
-                $('a[href="#' + tabid + '"]').click();
-            });
-            $('a[href="#' + tabid + '"]').click();
-        }
-
-        if ($().tabdrop) {
-            $('.tabbable-tabdrop .nav-pills, .tabbable-tabdrop .nav-tabs').tabdrop({
-                text: '<i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-angle-down"></i>'
-            });
-        }
-    };
-
-    // Handles Bootstrap Modals.
-    var handleModals = function() {        
-        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
-        $('body').on('hide.bs.modal', function() {
-            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') === false) {
-                $('html').addClass('modal-open');
-            } else if ($('.modal:visible').size() <= 1) {
-                $('html').removeClass('modal-open');
-            }
-        });
-
-        // fix page scrollbars issue
-        $('body').on('show.bs.modal', '.modal', function() {
-            if ($(this).hasClass("modal-scroll")) {
-                $('body').addClass("modal-open-noscroll");
-            }
-        });
-
-        // fix page scrollbars issue
-        $('body').on('hidden.bs.modal', '.modal', function() {
-            $('body').removeClass("modal-open-noscroll");
-        });
-
-        // remove ajax content and remove cache on modal closed 
-        $('body').on('hidden.bs.modal', '.modal:not(.modal-cached)', function () {
-            $(this).removeData('bs.modal');
-        });
-    };
-
-    // Handles Bootstrap Tooltips.
-    var handleTooltips = function() {
-        // global tooltips
-        $('.tooltips').tooltip();
-
-        // portlet tooltips
-        $('.portlet > .portlet-title .fullscreen').tooltip({
-            trigger: 'hover',
-            container: 'body',
-            title: 'Fullscreen'
-        });
-        $('.portlet > .portlet-title > .tools > .reload').tooltip({
-            trigger: 'hover',
-            container: 'body',
-            title: 'Reload'
-        });
-        $('.portlet > .portlet-title > .tools > .remove').tooltip({
-            trigger: 'hover',
-            container: 'body',
-            title: 'Remove'
-        });
-        $('.portlet > .portlet-title > .tools > .config').tooltip({
-            trigger: 'hover',
-            container: 'body',
-            title: 'Settings'
-        });
-        $('.portlet > .portlet-title > .tools > .collapse, .portlet > .portlet-title > .tools > .expand').tooltip({
-            trigger: 'hover',
-            container: 'body',
-            title: 'Collapse/Expand'
         });
     };
 
@@ -413,123 +101,9 @@ var App = function() {
         });
     };
 
-    var handleAlerts = function() {
-        $('body').on('click', '[data-close="alert"]', function(e) {
-            $(this).parent('.alert').hide();
-            $(this).closest('.note').hide();
-            e.preventDefault();
-        });
-
-        $('body').on('click', '[data-close="note"]', function(e) {
-            $(this).closest('.note').hide();
-            e.preventDefault();
-        });
-
-        $('body').on('click', '[data-remove="note"]', function(e) {
-            $(this).closest('.note').remove();
-            e.preventDefault();
-        });
-    };
-
-    // Handle textarea autosize 
-    var handleTextareaAutosize = function() {
-        if (typeof(autosize) == "function") {
-            autosize(document.querySelectorAll('textarea.autosizeme'));
-        }
-    }
-
-    // Handles Bootstrap Popovers
-
-    // last popep popover
-    var lastPopedPopover;
-
-    var handlePopovers = function() {
-        $('.popovers').popover();
-
-        // close last displayed popover
-
-        $(document).on('click.bs.popover.data-api', function(e) {
-            if (lastPopedPopover) {
-                lastPopedPopover.popover('hide');
-            }
-        });
-    };
-
     // Handles scrollable contents using jQuery SlimScroll plugin.
     var handleScrollers = function() {
         App.initSlimScroll('.scroller');
-    };
-
-    // Handles Image Preview using jQuery Fancybox plugin
-    var handleFancybox = function() {
-        if (!jQuery.fancybox) {
-            return;
-        }
-
-        if ($(".fancybox-button").size() > 0) {
-            $(".fancybox-button").fancybox({
-                groupAttr: 'data-rel',
-                prevEffect: 'none',
-                nextEffect: 'none',
-                closeBtn: true,
-                helpers: {
-                    title: {
-                        type: 'inside'
-                    }
-                }
-            });
-        }
-    };
-
-    // Handles counterup plugin wrapper
-    var handleCounterup = function() {
-        if (!$().counterUp) {
-            return;
-        }
-
-        $("[data-counter='counterup']").counterUp({
-            delay: 10,
-            time: 1000
-        });
-    };
-
-    // Fix input placeholder issue for IE8 and IE9
-    var handleFixInputPlaceholderForIE = function() {
-        //fix html5 placeholder attribute for ie7 & ie8
-        if (isIE8 || isIE9) { // ie8 & ie9
-            // this is html5 placeholder fix for inputs, inputs with placeholder-no-fix class will be skipped(e.g: we need this for password fields)
-            $('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function() {
-                var input = $(this);
-
-                if (input.val() === '' && input.attr("placeholder") !== '') {
-                    input.addClass("placeholder").val(input.attr('placeholder'));
-                }
-
-                input.focus(function() {
-                    if (input.val() == input.attr('placeholder')) {
-                        input.val('');
-                    }
-                });
-
-                input.blur(function() {
-                    if (input.val() === '' || input.val() == input.attr('placeholder')) {
-                        input.val(input.attr('placeholder'));
-                    }
-                });
-            });
-        }
-    };
-
-    // Handle Select2 Dropdowns
-    var handleSelect2 = function() {
-        if ($().select2) {
-            $.fn.select2.defaults.set("theme", "bootstrap");
-            $('.select2me').select2({
-                placeholder: "Select",
-                width: 'auto', 
-                allowClear: true
-            });
-        }
     };
 
     // handle group element heights
@@ -583,29 +157,12 @@ var App = function() {
             handleOnResize(); // set and handle responsive    
 
             //UI Component handlers     
-            handleMaterialDesign(); // handle material design       
-            handleiCheck(); // handles custom icheck radio and checkboxes
-            handleBootstrapSwitch(); // handle bootstrap switch plugin
             handleScrollers(); // handles slim scrolling contents 
-            handleFancybox(); // handle fancy box
-            handleSelect2(); // handle custom Select2 dropdowns
-            handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
-            handleAlerts(); //handle closabled alerts
             handleDropdowns(); // handle dropdowns
-            handleTabs(); // handle tabs
-            handleTooltips(); // handle bootstrap tooltips
-            handlePopovers(); // handles bootstrap popovers
             handleAccordions(); //handles accordions 
-            handleModals(); // handle modals
-            handleBootstrapConfirmation(); // handle bootstrap confirmations
-            handleTextareaAutosize(); // handle autosize textareas
-            handleCounterup(); // handle counterup instances
 
             //Handle group element heights
             this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
-
-            // Hacks
-            handleFixInputPlaceholderForIE(); //IE8 & IE9 input placeholder issue fix
         },
 
         //main function to initiate core javascript after ajax complete
@@ -1487,35 +1044,6 @@ var Layout = function () {
         });
     };
 
-    // Handles the go to top button at the footer
-    var handleGoTop = function () {
-        var offset = 300;
-        var duration = 500;
-
-        if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {  // ios supported
-            $(window).bind("touchend touchcancel touchleave", function(e){
-               if ($(this).scrollTop() > offset) {
-                    $('.scroll-to-top').fadeIn(duration);
-                } else {
-                    $('.scroll-to-top').fadeOut(duration);
-                }
-            });
-        } else {  // general 
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > offset) {
-                    $('.scroll-to-top').fadeIn(duration);
-                } else {
-                    $('.scroll-to-top').fadeOut(duration);
-                }
-            });
-        }
-        
-        $('.scroll-to-top').click(function(e) {
-            e.preventDefault();
-            $('html, body').animate({scrollTop: 0}, duration);
-            return false;
-        });
-    };
 
     // Hanlde 100% height elements(block, portlet, etc)
     var handle100HeightContent = function () {
@@ -1560,14 +1088,98 @@ var Layout = function () {
             }
         });        
     };
-    //* END:CORE HANDLERS *//
 
+    
+        var data = [	
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Denish Ann",
+                "Views" : "153",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-primary"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-danger"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-primary"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-danger"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-primary"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-info"
+            },
+            {
+                "Type" : "Buyer",
+                "LeadName" : "Lead Name",
+                "Views" : "5",
+                "Favourites" : "100",
+                "LastVisit" : "20",
+                "LastAction" : "9.28 AM",
+                "LastDate" : "09/05/2018",
+                "color": "text-primary"
+            }
+        ];
+        $(document).ready(function () {
+            for (var i = 0; i < data.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td  class='" + data[i].color  +"'>" + data[i].Type + "</td>");
+                tr.append("<td>" + data[i].LeadName + "</td>");
+                tr.append("<td>" + data[i].Views + "</td>");
+                tr.append("<td>" + data[i].Favourites + "</td>");
+                tr.append("<td>" + data[i].LastVisit + "</td>");
+                tr.append("<td>" + data[i].LastAction + "</td>");
+                tr.append("<td>" + data[i].LastDate + "</td>");
+                $('#data-table').append(tr);
+            }
+        });
+        
     return {
-        // Main init methods to initialize the layout
-        //IMPORTANT!!!: Do not modify the core handlers call order.
 
         initHeader: function() {
-            handleHorizontalMenu(); // handles horizontal menu    
+            handleHorizontalMenu(); 
         },
 
         setSidebarMenuActiveLink: function(mode, el) {
@@ -1599,59 +1211,10 @@ var Layout = function () {
             App.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize 
         },
 
-        initFooter: function() {
-            handleGoTop(); //handles scroll to top functionality in the footer
-        },
-
         init: function () {            
             this.initHeader();
             this.initSidebar(null);
             this.initContent();
-            this.initFooter();
-        },
-
-        loadAjaxContent: function(url, sidebarMenuLink) {
-            var pageContent = $('.page-content .page-content-body');    
-
-            App.startPageLoading({animate: true});
-            
-            $.ajax({
-                type: "GET",
-                cache: false,
-                url: url,
-                dataType: "html",
-                success: function (res) {    
-                    App.stopPageLoading();
-                    pageContent.html(res);
-
-                    for (var i = 0; i < ajaxContentSuccessCallbacks.length; i++) {
-                        ajaxContentSuccessCallbacks[i].call(res);
-                    }
-
-                    if (sidebarMenuLink.size() > 0 && sidebarMenuLink.parents('li.open').size() === 0) {
-                        $('.page-sidebar-menu > li.open > a').click();
-                    }
-                    
-                    Layout.fixContentHeight(); // fix content height
-                    App.initAjax(); // initialize core stuff
-                },
-                error: function (res, ajaxOptions, thrownError) {
-                    App.stopPageLoading();
-                    pageContent.html('<h4>Could not load the requested content.</h4>');
-
-                    for (var i = 0; i < ajaxContentErrorCallbacks.length; i++) {
-                        ajaxContentErrorCallbacks[i].call(res);
-                    }                    
-                }
-            });
-        },
-
-        addAjaxContentSuccessCallback: function(callback) {
-            ajaxContentSuccessCallbacks.push(callback);
-        },
-
-        addAjaxContentErrorCallback: function(callback) {
-            ajaxContentErrorCallbacks.push(callback);
         },
 
         //public function to fix the sidebar and content height accordingly
@@ -1678,8 +1241,7 @@ var Layout = function () {
 
 }();
 
-if (App.isAngularJsApp() === false) {
+
     jQuery(document).ready(function() {    
-       Layout.init(); // init metronic core componets
+       Layout.init();
     });
-}
