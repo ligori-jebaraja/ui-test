@@ -1,189 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<title>Admin Dashboard</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport" />
 
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="css/style.min.css">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/style.min.css">
 </head>
 <!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-<div class="page-wrapper"> 
-  <!-- BEGIN HEADER -->
-  <div class="page-header navbar navbar-fixed-top"> 
-    <!-- BEGIN HEADER INNER -->
-    <div class="page-header-inner "> 
-      <!-- BEGIN LOGO -->
-      <div class="page-logo"> <a href="index.html"> <img src="img/logo.png" alt="logo" class="logo-default" /> </a>
-        <div class="menu-toggler sidebar-toggler"> <span></span> </div>
-      </div>
-      <!-- END LOGO --> 
-      <!-- BEGIN RESPONSIVE MENU TOGGLER --> 
-      <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> <span></span> </a> 
-      <!-- END RESPONSIVE MENU TOGGLER --> 
-      <!-- BEGIN TOP NAVIGATION MENU -->
-      <div class="top-menu">
-        <ul class="nav navbar-nav pull-right">
-          <!-- BEGIN NOTIFICATION DROPDOWN --> 
-          <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte --> 
-          <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode --> 
-          <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-          <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar"> <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-bell"></i> <span class="badge badge-default"> 7 </span> </a>
-            <ul class="dropdown-menu">
-              <li class="external">
-                <h3> <span class="bold">12 pending</span> notifications</h3>
-                <a href="page_user_profile_1.html">view all</a> </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                  <li> <a href="javascript:;"> <span class="time">just now</span> <span class="details"> <span class="label label-sm label-icon label-success"> <i class="fa fa-plus"></i> </span> New user registered. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">3 mins</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Server #12 overloaded. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">10 mins</span> <span class="details"> <span class="label label-sm label-icon label-warning"> <i class="fa fa-bell-o"></i> </span> Server #2 not responding. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">14 hrs</span> <span class="details"> <span class="label label-sm label-icon label-info"> <i class="fa fa-bullhorn"></i> </span> Application error. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">2 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Database overloaded 68%. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">3 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> A user IP blocked. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">4 days</span> <span class="details"> <span class="label label-sm label-icon label-warning"> <i class="fa fa-bell-o"></i> </span> Storage Server #4 not responding dfdfdfd. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">5 days</span> <span class="details"> <span class="label label-sm label-icon label-info"> <i class="fa fa-bullhorn"></i> </span> System Error. </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="time">9 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Storage server failed. </span> </a> </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <!-- END NOTIFICATION DROPDOWN --> 
-          <!-- BEGIN INBOX DROPDOWN --> 
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar"> <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-envelope-open"></i> <span class="badge badge-default"> 4 </span> </a>
-            <ul class="dropdown-menu">
-              <li class="external">
-                <h3>You have <span class="bold">7 New</span> Messages</h3>
-                <a href="app_inbox.html">view all</a> </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                  <li> <a href="#"> <span class="photo"> <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Lisa Wong </span> <span class="time">Just Now </span> </span> <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span> </a> </li>
-                  <li> <a href="#"> <span class="photo"> <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Richard Doe </span> <span class="time">16 mins </span> </span> <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span> </a> </li>
-                  <li> <a href="#"> <span class="photo"> <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Bob Nilson </span> <span class="time">2 hrs </span> </span> <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span> </a> </li>
-                  <li> <a href="#"> <span class="photo"> <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Lisa Wong </span> <span class="time">40 mins </span> </span> <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span> </a> </li>
-                  <li> <a href="#"> <span class="photo"> <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Richard Doe </span> <span class="time">46 mins </span> </span> <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span> </a> </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <!-- END INBOX DROPDOWN --> 
-          <!-- BEGIN TODO DROPDOWN --> 
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar"> <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-calendar"></i> <span class="badge badge-default"> 3 </span> </a>
-            <ul class="dropdown-menu extended tasks">
-              <li class="external">
-                <h3>You have <span class="bold">12 pending</span> tasks</h3>
-                <a href="app_todo.html">view all</a> </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">New release v1.2 </span> <span class="percent">30%</span> </span> <span class="progress"> <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">40% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">Application deployment</span> <span class="percent">65%</span> </span> <span class="progress"> <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">65% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">Mobile app release</span> <span class="percent">98%</span> </span> <span class="progress"> <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">98% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">Database migration</span> <span class="percent">10%</span> </span> <span class="progress"> <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">10% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">Web server upgrade</span> <span class="percent">58%</span> </span> <span class="progress"> <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">58% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">Mobile development</span> <span class="percent">85%</span> </span> <span class="progress"> <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">85% Complete</span> </span> </span> </a> </li>
-                  <li> <a href="javascript:;"> <span class="task"> <span class="desc">New UI release</span> <span class="percent">38%</span> </span> <span class="progress progress-striped"> <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"> <span class="sr-only">38% Complete</span> </span> </span> </a> </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <!-- END TODO DROPDOWN --> 
-          <!-- BEGIN USER LOGIN DROPDOWN --> 
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-user"> <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <img alt="" class="img-circle" src="img/admin.png" /> <span class="username username-hide-on-mobile"> John Doe </span> <i class="fa fa-angle-down"></i> </a>
-            <ul class="dropdown-menu dropdown-menu-default">
-              <li> <a href="#"> <i class="icon-user"></i> My Profile </a> </li>
-              <li> <a href="#"> <i class="icon-lock"></i> Change Password </a> </li>
-              <li> <a href="#"> <i class="icon-key"></i> Log Out </a> </li>
-            </ul>
-          </li>
-          <!-- END USER LOGIN DROPDOWN --> 
-        </ul>
-      </div>
-      <!-- END TOP NAVIGATION MENU --> 
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html"> <img src="img/logo.png" alt="logo" class="logo-default" /> </a>
+                    <div class="menu-toggler sidebar-toggler"> <span></span> </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> <span></span> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu left-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown dropdown-extended dropdown-notification">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-magnifier"></i> </a>
+                        </li>
+                        <li class="dropdown dropdown-extended dropdown-notification">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-size-fullscreen"></i> </a>
+                        </li>
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <span class="username username-hide-on-mobile"> Mega </span> <i class="fa fa-angle-down"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="#"> Menu 1 </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Menu 2 </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Menu 3 </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
+                        <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-bell"></i> <span class="badge badge-default"> 7 </span> </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3> <span class="bold">12 pending</span> notifications</h3>
+                                    <a href="page_user_profile_1.html">view all</a> </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">just now</span> <span class="details"> <span class="label label-sm label-icon label-success"> <i class="fa fa-plus"></i> </span> New user registered. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">3 mins</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Server #12 overloaded. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">10 mins</span> <span class="details"> <span class="label label-sm label-icon label-warning"> <i class="fa fa-bell-o"></i> </span> Server #2 not responding. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">14 hrs</span> <span class="details"> <span class="label label-sm label-icon label-info"> <i class="fa fa-bullhorn"></i> </span> Application error. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">2 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Database overloaded 68%. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">3 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> A user IP blocked. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">4 days</span> <span class="details"> <span class="label label-sm label-icon label-warning"> <i class="fa fa-bell-o"></i> </span> Storage Server #4 not responding dfdfdfd. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">5 days</span> <span class="details"> <span class="label label-sm label-icon label-info"> <i class="fa fa-bullhorn"></i> </span> System Error. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> <span class="time">9 days</span> <span class="details"> <span class="label label-sm label-icon label-danger"> <i class="fa fa-bolt"></i> </span> Storage server failed. </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <i class="icon-envelope-open"></i> <span class="badge badge-default"> 4 </span> </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>You have <span class="bold">7 New</span> Messages</h3>
+                                    <a href="app_inbox.html">view all</a> </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="#"> <span class="photo"> <img src="img/admin.png" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Lisa Wong </span> <span class="time">Just Now </span> </span> <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <span class="photo"> <img src="img/admin.png" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Richard Doe </span> <span class="time">16 mins </span> </span> <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <span class="photo"> <img src="img/admin.png" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Bob Nilson </span> <span class="time">2 hrs </span> </span> <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <span class="photo"> <img src="img/admin.png" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Lisa Wong </span> <span class="time">40 mins </span> </span> <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <span class="photo"> <img src="img/admin.png" class="img-circle" alt=""> </span> <span class="subject"> <span class="from"> Richard Doe </span> <span class="time">46 mins </span> </span> <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>                                                </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END INBOX DROPDOWN -->
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <img alt="" class="img-circle" src="img/admin.png" /> <span class="username username-hide-on-mobile"> John Doe </span> <i class="fa fa-angle-down"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="#"> <i class="icon-user"></i> My Profile </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="icon-lock"></i> Change Password </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="icon-key"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div class="page-container">
+
+            <div class="page-sidebar-wrapper">
+
+                <div class="page-sidebar navbar-collapse collapse">
+                    <div class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <img alt="" class="img-circle" src="img/admin.png" /> <span class="username username-hide-on-mobile"> John Doe<br> UI Designer </span> <i class="fa fa-angle-down"></i> </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="#"> <i class="icon-user"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="icon-lock"></i> Change Password </a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="text-uppercase navigation-text">--- Navigation</p>
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler"> <span></span> </div>
+                        </li>
+
+                        <li class="nav-item start active open">
+                            <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> <span class="arrow open"></span> </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item start active open">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> <span class="selected"></span> </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> <span class="badge badge-info">NEW</span> </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-briefcase"></i> <span class="title">Page Layouts</span> <span class="badge badge-warning">NEW</span> <span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-briefcase"></i> <span class="title">Navigation</span> <span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-grid"></i> <span class="title">Widget</span> <span class="badge badge-danger">100+</span> <span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+
+            <div class="page-content-wrapper">
+
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="page-title">Dashboard</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="index.html"><span class="icon-home"></span></a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <a href="index.html">Pages</a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span>Dashboard</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Stats -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stat-box text-center text-uppercase">
+                                <div class="row no-gutters">
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-right border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-1.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>10k</strong> Visitors</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-2.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>100%</strong> Volume</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-right border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-3.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>200+</strong> Files</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-4.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>120</strong> Mails</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-box text-center text-uppercase">
+                                <div class="row no-gutters">
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-right border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-5.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>1000</strong> Shares</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-6.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>600</strong> Network</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-right border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-7.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>350</strong> Returns</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row no-gutters py-3 border-bottom">
+                                            <div class="col-xs-5">
+                                                <img src="img/icon-8.jpg" alt="Visitors" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-7"><strong>100%</strong> Connections</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="left-iconbox pistha">
+                                <div class="row no-gutters">
+                                    <div class="col-xs-3 text-center dark">
+                                        <i class="icon-star"></i>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <strong>4000+</strong> Ratings Received
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left-iconbox green">
+                                <div class="row no-gutters">
+                                    <div class="col-xs-3 text-center dark">
+                                        <i class="icon-trophy"></i>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <strong>17</strong> Achievments
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Social Feed -->
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <a class="dashboard-stat dashboard-stat-v2 facebbok" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-facebook"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span>1165+</span>
+                                    </div>
+                                    <div class="desc"> Facebook Users </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a class="dashboard-stat dashboard-stat-v2 twitter" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span>780+</span>
+                                    </div>
+                                    <div class="desc"> Twitter Users </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a class="dashboard-stat dashboard-stat-v2 linkedin" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-linkedin"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span>998+</span>
+                                    </div>
+                                    <div class="desc"> Linked In Users </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a class="dashboard-stat dashboard-stat-v2 google" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-google-plus"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span>650+</span>
+                                    </div>
+                                    <div class="desc"> Google Plus Users </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- END HEADER INNER --> 
-  </div>
-	
-  <div class="clearfix"> </div>
-	
-  <div class="page-container"> 
-	  
-    <div class="page-sidebar-wrapper"> 
-		
-      <div class="page-sidebar navbar-collapse collapse"> 
-		  
-        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-			
-          <li class="sidebar-toggler-wrapper hide">
-            <div class="sidebar-toggler"> <span></span> </div>
-          </li>
-			
-          <li class="nav-item start active open"> <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> <span class="arrow open"></span> </a>
-            <ul class="sub-menu">
-              <li class="nav-item start active open"> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> <span class="selected"></span> </a> </li>
-              <li class="nav-item start "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a> </li>
-              <li class="nav-item start "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a> </li>
-              <li class="nav-item start "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> <span class="badge badge-info">5</span> </a> </li>              
-              <li class="nav-item start "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a> </li>
-            </ul>
-          </li>
-          <li class="nav-item  "> <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-briefcase"></i> <span class="title">Page Layouts</span> <span class="arrow"></span> </a>
-            <ul class="sub-menu">
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a> </li>              
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a> </li>
-            </ul>
-          </li>
-          <li class="nav-item  "> <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-briefcase"></i> <span class="title">Navigation</span> <span class="arrow"></span> </a>
-            <ul class="sub-menu">
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a> </li>              
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a> </li>
-            </ul>
-          </li>
-          <li class="nav-item  "> <a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-briefcase"></i> <span class="title">Widget</span> <span class="arrow"></span> </a>
-            <ul class="sub-menu">
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Default</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Ecommerce</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">CRM</span> </a> </li>
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Analytics</span> </a> </li>              
-              <li class="nav-item "> <a href="#" class="nav-link "> <i class="icon-arrow-right"></i> <span class="title">Project</span> </a> </li>
-            </ul>
-          </li>
-        </ul>
-        <!-- END SIDEBAR MENU --> 
-        <!-- END SIDEBAR MENU --> 
-      </div>
-      <!-- END SIDEBAR --> 
-    </div>
-	  
-    <div class="page-content-wrapper"> 
-		
-      <div class="page-content"> 
-      </div>
-      <!-- END CONTENT BODY --> 
-    </div>
-    <!-- END CONTENT --> 
-  </div>
-  <!-- END CONTAINER --> 
-</div>
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" type="text/javascript"></script> 
-<script src="js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
